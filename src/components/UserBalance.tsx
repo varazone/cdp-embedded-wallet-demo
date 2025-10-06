@@ -1,5 +1,5 @@
 "use client";
-import { LoadingSkeleton } from "@coinbase/cdp-react/components/LoadingSkeleton";
+import { LoadingSkeleton } from "@coinbase/cdp-react/components/ui/LoadingSkeleton";
 
 interface Props {
   balance?: string;

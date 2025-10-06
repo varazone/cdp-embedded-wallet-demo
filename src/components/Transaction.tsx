@@ -1,10 +1,10 @@
 import { useEvmAddress } from "@coinbase/cdp-hooks";
-import { Button } from "@coinbase/cdp-react/components/Button";
-import { LoadingSkeleton } from "@coinbase/cdp-react/components/LoadingSkeleton";
+import { Button } from "@coinbase/cdp-react/components/ui/Button";
+import { LoadingSkeleton } from "@coinbase/cdp-react/components/ui/LoadingSkeleton";
 import {
-  SendTransactionButton,
-  type SendTransactionButtonProps,
-} from "@coinbase/cdp-react/components/SendTransactionButton";
+  SendEvmTransactionButton,
+  type SendEvmTransactionButtonProps,
+} from "@coinbase/cdp-react/components/SendEvmTransactionButton";
 import { useMemo, useState } from "react";
 
 interface Props {
@@ -30,7 +30,7 @@ export default function Transaction(props: Props) {
     return balance && balance !== "0";
   }, [balance]);
 
-  const transaction = useMemo<SendTransactionButtonProps["transaction"]>(() => {
+  const transaction = useMemo<SendEvmTransactionButtonProps["transaction"]>(() => {
     return {
       to: evmAddress, // Send to yourself for testing
       value: BigInt(1000000000000), // 0.000001 ETH in wei
@@ -40,14 +40,14 @@ export default function Transaction(props: Props) {
     };
   }, [evmAddress]);
 
-  const handleTransactionError: SendTransactionButtonProps["onError"] = (
+  const handleTransactionError: SendEvmTransactionButtonProps["onError"] = (
     error,
   ) => {
     setTransactionHash("");
     setError(error.message);
   };
 
-  const handleTransactionSuccess: SendTransactionButtonProps["onSuccess"] = (
+  const handleTransactionSuccess: SendEvmTransactionButtonProps["onSuccess"] = (
     hash,
   ) => {
     setTransactionHash(hash);
@@ -90,7 +90,7 @@ export default function Transaction(props: Props) {
               {hasBalance && evmAddress && (
                 <>
                   <p>Send 0.000001 ETH to yourself on Base Sepolia</p>
-                  <SendTransactionButton
+                  <SendEvmTransactionButton
                     account={evmAddress}
                     network="base-sepolia"
                     transaction={transaction}

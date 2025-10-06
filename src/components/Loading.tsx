@@ -1,6 +1,6 @@
 "use client";
 
-import { LoadingSpinner } from "@coinbase/cdp-react/components/LoadingSpinner";
+import { LoadingSpinner } from "@coinbase/cdp-react/components/ui/LoadingSpinner";
 
 /**
  * App loading screen
