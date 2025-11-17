@@ -1,7 +1,8 @@
 "use client";
-import { useEvmAddress } from "@coinbase/cdp-hooks";
+import { useSolanaAddress, useIsSignedIn } from "@coinbase/cdp-hooks";
 import { AuthButton } from "@coinbase/cdp-react/components/AuthButton";
 import { useEffect, useState } from "react";
+import { shortenAddress, solanaPubkey, solanaToVara } from "./utils";
 
 import { IconCheck, IconCopy, IconUser } from "@/components/Icons";
 
@@ -9,13 +10,16 @@ import { IconCheck, IconCopy, IconUser } from "@/components/Icons";
  * Header component
  */
 export default function Header() {
-  const { evmAddress } = useEvmAddress();
+  const { isSignedIn } = useIsSignedIn();
+  const { solanaAddress } = useSolanaAddress();
   const [isCopied, setIsCopied] = useState(false);
+  const varaAddress = solanaToVara(solanaAddress);
+  const shortAddress = shortenAddress(varaAddress);
 
   const copyAddress = async () => {
-    if (!evmAddress) return;
+    if (!solanaAddress) return;
     try {
-      await navigator.clipboard.writeText(evmAddress);
+      await navigator.clipboard.writeText(varaAddress);
       setIsCopied(true);
     } catch (error) {
       console.error(error);
@@ -35,7 +39,7 @@ export default function Header() {
       <div className="header-inner">
         <h1 className="site-title">CDP Next.js StarterKit</h1>
         <div className="user-info flex-row-container">
-          {evmAddress && (
+          {solanaAddress && (
             <button
               aria-label="copy wallet address"
               className="flex-row-container copy-address-button"
@@ -49,11 +53,11 @@ export default function Header() {
               )}
               {isCopied && <IconCheck className="user-icon user-icon--check" />}
               <span className="wallet-address">
-                {evmAddress.slice(0, 6)}...{evmAddress.slice(-4)}
+                {shortAddress}
               </span>
             </button>
           )}
-          <AuthButton />
+          {isSignedIn && (<AuthButton />)}
         </div>
       </div>
     </header>

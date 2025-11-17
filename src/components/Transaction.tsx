@@ -105,11 +105,11 @@ export default function Transaction(props: Props) {
                   <p>
                     Get some from{" "}
                     <a
-                      href="https://portal.cdp.coinbase.com/products/faucet"
+                      href="https://portal.cdp.coinbase.com/products/faucet?token=SOL&network=solana-devnet"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Base Sepolia Faucet
+                      Solana Devnet Faucet
                     </a>
                   </p>
                 </>

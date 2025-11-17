@@ -30,7 +30,7 @@ export default function UserBalance(props: Props) {
       <p>
         Get testnet ETH from{" "}
         <a
-          href="https://portal.cdp.coinbase.com/products/faucet"
+          href="https://portal.cdp.coinbase.com/products/faucet?token=SOL&network=solana-devnet"
           target="_blank"
           rel="noopener noreferrer"
         >

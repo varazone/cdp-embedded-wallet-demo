@@ -127,6 +127,7 @@ hr {
 }
 
 header {
+  color: var(--cdp-example-text-color);
   background-color: var(--cdp-example-card-bg-color);
   border-bottom: 1px solid var(--cdp-example-card-border-color);
   padding: 0.5rem 1rem;
@@ -145,6 +146,7 @@ header .wallet-address {
   margin: 0 auto;
   max-width: 75rem;
   text-align: center;
+  height: 3rem;
 }
 
 .user-info {
